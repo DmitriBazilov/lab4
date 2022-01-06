@@ -1,7 +1,5 @@
 package classes;
 
-import enums.Mood;
-
 public abstract class Character extends Entity implements Moveable{
 	private Mood moodState;
 	
@@ -19,13 +17,28 @@ public abstract class Character extends Entity implements Moveable{
 		super(name, location);
 		this.moodState = moodstate;
 	}
+
+	// Вложенный статический enum
+	public enum Mood {
+		DEPRESSION("Уныние"), GLAD("Радость"), PANIC("Паника");
 	
+		private final String state;
+	
+		Mood(String state) {
+			this.state = state;
+		}		
+	
+		public String getState() {
+			return state;
+		}
+	}
+
 	public void setMoodstate(Mood moodState) {
 		if (moodState == null)
 			throw new IllegalArgumentException("Null это не настроение");
 		this.moodState = moodState;
 	}
-	
+
 	public Mood getMoodstate() {
 		return moodState;
 	}

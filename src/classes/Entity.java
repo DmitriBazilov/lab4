@@ -10,7 +10,9 @@ public abstract class Entity implements Contained<Place> {
 	private ArrayList<Description> description = new ArrayList<>();
 	private Place location;
 	
-	public Entity() {}
+	public Entity() {
+		this.name = "Entity";
+	}
 	
 	public Entity(String name) {
 		if (name == null || name.isEmpty()) {
@@ -74,6 +76,7 @@ public abstract class Entity implements Contained<Place> {
 			this.location = location;
 		}	
 	}
+
 	@Override
 	public Place getLocation() {
 		return location;

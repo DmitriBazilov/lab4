@@ -10,7 +10,9 @@ public class Place implements Containable<Entity>{
 	private ArrayList<Entity> container = new ArrayList<>();
 	private ArrayList<Illuminable> lights = new ArrayList<>();
 	
-	public Place() {}
+	public Place() {
+		this.name = "Place";
+	}
 	
 	public Place(String name) {
 		if (name == null || name.isEmpty()) {

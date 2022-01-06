@@ -1,11 +1,9 @@
 package classes;
 
 import java.util.Objects;
-
 import enums.Color;
-import enums.Mood;
 
-public class Human extends Character{
+public class Human extends Character implements DoorInteractable {
 	private String gender;
 	
 	//Вложенный нон-статик класс
@@ -86,6 +84,30 @@ public class Human extends Character{
 		
 	}
 	
+	@Override 
+	public boolean tryOpen(Key key, Door door) {
+		System.out.print(getName() + " пытается открыть " + door.getName() + " ");
+
+		if (door.getStatusOpen()) {
+			System.out.print(door.getName() + " и так была открыта ");
+			return true;
+		}
+		
+		if (key.equals(door.getNeedKey())) {
+			door.setStatusOpen(true);
+			System.out.print("У " + getName() + " получилось! "); 
+			return true;
+		} else {
+			System.out.print("У " + getName() + " не получилось( "); 
+			return false;
+		}
+	}	
+	
+	@Override
+	public void goThrough(Door door) {
+		this.changeLocation(door.getNextPlace());
+	}
+
 	@Override
 	public String toString() {
 		return getClass().getName() + " name: " + getName() + " gender: " + gender

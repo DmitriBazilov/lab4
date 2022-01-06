@@ -4,40 +4,58 @@ import java.util.Objects;
 
 public class Door extends Entity {
 	private boolean isOpen = false;
-	private static final Key NEEDKEY = new Key("Нужный ключ");
-	
-	public static class CheckerKey {
-		public static void tryOpenDoor(Door door, Key key) {
-			if (key == NEEDKEY) {
-				door.setStatusOpen(true);
-				System.out.print(door.getName() + " открылась ");
-			} else {
-				System.out.print(door.getName() + " не открылась ");
-			}
-		}
-		
-		public static boolean isNeedKey(Key key) {
-			return (NEEDKEY == key);
-		}
-	}
-	
+	private Place nextPlace;
+	private Key needKey;
+
 	public Door() {}
 	
 	public Door(String name, Place location) {
 		super(name, location);
 	}
 	
+	public Door(String name, Place firstLoc, Place secondLoc) {
+		super(name, firstLoc);
+		this.nextPlace = secondLoc;
+	}
+
 	public Door(String name, Place location, boolean isOpen) {
 		super(name, location);
 		this.isOpen = isOpen;
 	}
-	
+
+	public Door(String name, Place firstLoc, Place secondLoc, boolean isOpen) {
+		super(name, firstLoc);
+		this.isOpen = isOpen;
+		this.nextPlace = secondLoc;
+	}
+
+	public Door(String name, Place firstLoc, Key needKey) {
+		this(name, firstLoc);
+		this.needKey = needKey;
+	}
+
 	public void setStatusOpen(boolean isOpen) {
 		this.isOpen = isOpen;
 	}
 	
+	public void setNeedKey(Key key) {
+		this.needKey = key;
+	}
+
+	public void setNextPlace(Place place) {
+		this.nextPlace = place;
+	}
+
 	public boolean getStatusOpen() {
 		return isOpen;
+	}
+
+	public Key getNeedKey() {
+		return needKey;
+	}
+
+	public Place getNextPlace() {
+		return nextPlace;
 	}
 	
 	@Override

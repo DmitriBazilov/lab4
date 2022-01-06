@@ -3,7 +3,6 @@ package classes;
 import java.util.Objects;
 
 import enums.Color;
-import enums.Mood;
 
 public class Rabbit extends Character{
 	private Color color;
